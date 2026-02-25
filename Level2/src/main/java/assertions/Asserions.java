@@ -1,4 +1,4 @@
-package Assertions;
+package assertions;
 
 public class Asserions {
 

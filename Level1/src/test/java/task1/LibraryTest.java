@@ -1,9 +1,8 @@
-package Task1;
+package task1;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -59,38 +58,31 @@ class LibraryTest {
     }
 
     @Test
-    void testRemoveBook () {
+    void testRemoveBook() {
         library.addBook("El Quijote", "Cervantes");
         library.addBook("Drácula", "Stroker");
 
-        library.removeBook("Book 1");
+        library.removeBook("El Quijote");
 
         assertEquals(1, library.size());
     }
 
     @Test
-    void testTitleSorted () {
+    void testTitleSorted() {
         library.addBook("El Quijote", "Cervantes");
         library.addBook("Romeo and Juliet", "Shakespeare");
         library.addBook("Hamlet", "Shakespeare");
 
         List<String> sorted = library.getTitlesSorted();
 
-        assertEquals(List.of("Romeo y Julieta", "Hamlet", "El Quijote"), sorted);
-
-        assertEquals("El Quijote", library.getBookTitle(0));
+        assertEquals(List.of("El Quijote", "Hamlet", "Romeo and Juliet"), sorted);
     }
 
     @Test
     void testNoDuplicates() {
         library.addBook("1984", "Owell");
 
-        try {
-            library.addBook("1984", "Owell");
-            fail("Expected an IllegalArgumentException for duplicate book");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Exception caught correctly: " + e.getMessage());
-        }
+        assertThrows(IllegalArgumentException.class, () -> library.addBook("1984", "Owell"));
     }
 
 }

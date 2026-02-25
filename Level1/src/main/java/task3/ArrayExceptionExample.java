@@ -1,6 +1,4 @@
-package Task3;
-
-import java.util.ArrayList;
+package task3;
 
 public class ArrayExceptionExample {
 

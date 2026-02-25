@@ -1,4 +1,4 @@
-package Task2;
+package task2;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -30,24 +30,12 @@ class CalculoDniTest {
 
     @Test
     void testNegativeNumber() {
-        try {
-            calculo.calculateLetter(-1);
-            fail("IllegalArgumentException expected for negative numbers");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Exception catched correctly: " + e.getMessage());
-        }
+        assertThrows(IllegalArgumentException.class, () -> calculo.calculateLetter(-1));
     }
 
     @Test
-    void testNumberLength () {
-        try {
-            calculo.calculateLetter(100000000);
-            fail("IllegalArgumentException expected for too long numbers");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Exception catched correctly: " + e.getMessage());
-        }
-
+    void testNumberLength() {
+        assertThrows(IllegalArgumentException.class, () -> calculo.calculateLetter(100000000));
     }
-
 
 }
