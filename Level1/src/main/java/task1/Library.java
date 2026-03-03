@@ -6,15 +6,14 @@ import java.util.List;
 
 public class Library {
 
-    private final ArrayList<Book> books;
+    private final List<Book> books;
 
     public Library() {
         books = new ArrayList<>();
     }
 
     public void addBook(String title, String author) {
-        checkIfTitleExists(title);
-        books.add(new Book(title, author));
+        addBookAtPosition(books.size(), title, author);
     }
 
     public void addBookAtPosition(int position, String title, String author) {

@@ -1,5 +1,5 @@
 # S1.04 – Testing
-## 🎯Objetives
+## 🎯Objectives
 This task aims to put into practice essential knowledge about testing in Java, using tools such as JUnit 5, AssertJ, and the TDD (Test-Driven Development) methodology.
 
 ## 📌Level 1: JUnit

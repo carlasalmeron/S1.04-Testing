@@ -7,24 +7,42 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.fail;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class AsserionsTest {
+class AssertionsTest {
 
     //Task 1
     @Test
     void testEquality() {
 
         class Score {
-
             final int value;
 
             Score(int value) {
                 this.value = value;
             }
 
+            @Override
+            public boolean equals(Object obj) {
+                if (this == obj) {
+                    return true;
+                }
+
+                if (obj instanceof Score) {
+                    Score anotherScore = (Score) obj;
+
+                    if (this.value == anotherScore.value) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public int hashCode() {
+                return value;
+            }
         }
 
         Score score1 = new Score(10);
@@ -40,7 +58,6 @@ class AsserionsTest {
     void testAssertionReferenceEquality() {
 
         class Book {
-
             final String title;
 
             Book(String title) {
@@ -66,7 +83,7 @@ class AsserionsTest {
         int[] data1 = {1, 2, 3, 4};
         int[] data2 = {1, 2, 3, 4};
 
-        assertThat(data1).containsExactly(data2);
+        assertThat(data1).isEqualTo(data2);
 
     }
 
@@ -112,7 +129,9 @@ class AsserionsTest {
         numberList.add(6);
         numberList.add(7);
 
-        assertThrows(IndexOutOfBoundsException.class, () -> numberList.get(9));
+        assertThatThrownBy(() -> numberList.get(9))
+                .isInstanceOf(IndexOutOfBoundsException.class)
+                .hasMessageContaining("Index 9 out of bounds");
     }
 
     //Task 7
