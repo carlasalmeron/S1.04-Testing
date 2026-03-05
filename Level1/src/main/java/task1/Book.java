@@ -15,7 +15,7 @@ public class Book {
     }
 
 
-    protected String getTitle() {
+    public String getTitle() {
         return title;
     }
 
